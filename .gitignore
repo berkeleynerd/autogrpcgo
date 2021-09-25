@@ -1,5 +1,4 @@
 bin/
-api/*.go
 *.exe
 buildArtifacts
 .terraform
