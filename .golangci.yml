@@ -1,0 +1,26 @@
+run:
+  modules-download-mode: vendor
+
+linters:
+  enable-all: true
+  disable:
+    - wsl # too opinionated
+    - nlreturn # new line on return is good but there are cases when it makes no sense
+    - gofumpt # requires non-standard tooling
+    - errorlint  # prevents from including downstream errors as strings if predefined error is used for wrapping; goerr113, wrapcheck seem to be enough for linting errors returned
+    - exhaustivestruct # enforces unnecessary boilerplate; even authors recommend it for "special cases only"
+    - ifshort # seems useful but does not correctly recognize usage when used to assign struct fields
+    - gci # requires non-standard tooling and goimports acheives these goals already
+
+linters-settings:
+  lll:
+    line-length: 160
+  goimports:
+    local-prefixes: github.com/berkeleynerd/autogrpcgo
+
+issues:
+  max-per-linter: 0
+  max-same-issues: 0
+  exclude-rules:
+    - source: "^//go:generate "
+      linters: [ lll ]
